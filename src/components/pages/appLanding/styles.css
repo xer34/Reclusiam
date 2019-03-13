@@ -1,0 +1,35 @@
+:local(.mockup) {
+  height: 100vh;
+}
+:local(.container) {
+  width: 100%;
+  height: 100vh;
+  background-color: #22252a;
+}
+:local(.text) {
+    position: fixed;
+    top: 25%;
+    left: 47%;
+    font-size: 40px;
+    color: white;
+}
+:local(.textUnder) {
+    position: fixed;
+    top: 35%;
+    left: 47%;
+    font-size: 40px;
+    color: white;
+}
+:local(.googlePlay) {
+    position: fixed;
+    top: 55%;
+    left: 47%;
+    font-size: 20px;
+    color: white;
+}
+:local(.gplaybadge) {
+    position: fixed;
+    top: 60%;
+    left: 44%;
+    height: 150px;
+}

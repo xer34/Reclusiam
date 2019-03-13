@@ -1,27 +1,26 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { signIn } from '../../store/actions/authActions'
-import { Redirect } from 'react-router-dom'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signIn } from "../../store/actions/authActions";
+import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
   state = {
-    email: '',
-    password: ''
-  }
-  handleChange = (e) => {
+    email: "",
+    password: ""
+  };
+  handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
-    })
-  }
-  handleSubmit = (e) => {
+    });
+  };
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.signIn(this.state)
-  }
+    this.props.signIn(this.state);
+  };
   render() {
-
     const { authError, auth } = this.props;
-
-    if (auth.uid) return <Redirect to='/' />
+    //redirect if authenticated
+    if (auth.uid) return <Redirect to="/" />;
 
     return (
 
@@ -30,35 +29,39 @@ class SignIn extends Component {
           <h5 className="grey-text text-darken-3">Sign In</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>
-            <input type="email" id='email' onChange={this.handleChange} />
+            <input type="email" id="email" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="password">Password</label>
-            <input type="password" id='password' onChange={this.handleChange} />
+            <input type="password" id="password" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Log In</button>
+            <button className="btn black">Log In</button>
             <div className="center red-text">
-              { authError ? <p>{authError}</p> : null }
+              {authError ? <p>{authError}</p> : null}
             </div>
           </div>
         </form>
       </div>
-    )
+
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return{
+const mapStateToProps = state => {
+  return {
     authError: state.auth.authError,
     auth: state.firebase.auth
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    signIn: (creds) => dispatch(signIn(creds))
-  }
-}
+    signIn: creds => dispatch(signIn(creds))
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn);

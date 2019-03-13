@@ -17,11 +17,12 @@ class CreateProject extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.createProject(this.state);
+    this.props.history.push('/')
   }
   render() {
 
     const { auth } = this.props
-
+    //if not authorized redirect 
     if (!auth.uid) return <Redirect to='/signin' />
     return (
       <div className="container">

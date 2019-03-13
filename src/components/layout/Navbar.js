@@ -7,14 +7,14 @@ import { connect } from 'react-redux'
 
 const Navbar = (props) => {
 
-    const { auth } = props
-    const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />
+    const { auth, profile } = props
+    const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks />
 
     return(
         //materialize navbar
-        <nav className="nav-wrapper grey darken-3">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
-                <Link to='/' className='brand-logo'>BattleTimer</Link>
+                <Link to='/' className='navbar-brand'>R E C L U S I A M</Link>
                 { links }
             </div>
         </nav>
@@ -23,7 +23,8 @@ const Navbar = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
     }
 }
 
