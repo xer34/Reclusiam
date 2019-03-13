@@ -37,7 +37,7 @@ class CreateProject extends Component {
             <label htmlFor="content">Project Content</label>
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1">Create</button>
+            <button className="btn orange white-text">Create</button>
           </div>
         </form>
       </div>

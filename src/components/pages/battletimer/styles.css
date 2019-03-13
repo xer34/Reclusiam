@@ -231,3 +231,12 @@
     animation-name: move-up;
     animation-duration: 1.5s;
 }
+
+.todoform {
+    color: white;
+}
+
+.sumbitButton {
+    position: relative;
+    left: 25%;
+}

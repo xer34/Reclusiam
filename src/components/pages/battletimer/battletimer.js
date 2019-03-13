@@ -4,7 +4,7 @@ import { createProject } from "../../../store/actions/projectActions";
 import { Redirect } from "react-router-dom";
 import TodoForm from "./battletimerForm";
 import TodoList from "./battletimerList";
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import todoItems from "./items";
 
 import {
@@ -24,11 +24,14 @@ class CreateProject extends Component {
     this.removeItem = this.removeItem.bind(this);
     this.markTodoDone = this.markTodoDone.bind(this);
     this.state = { todoItems: todoItems };
+    
   }
   state = {
     title: "",
-    content: ""
-  };
+    content: "",
+    modal: false
+  }
+  
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -60,6 +63,9 @@ class CreateProject extends Component {
     todo.done ? todoItems.push(todo) : todoItems.unshift(todo);
     this.setState({ todoItems: todoItems });
   }
+  onClick() {
+    setTimeout(function(){ alert('List Submitted!'); }, 3000);
+  }
 
   render() {
     const { auth } = this.props;
@@ -84,7 +90,7 @@ class CreateProject extends Component {
       //   </div>
       <div>
         <br />
-        <Accordion accordion={false} className="container">
+        <Accordion accordion={true} className="container">
           <AccordionItem>
             <AccordionItemTitle className="pregame">
               <h5 className="white-text text-darken-3">PreGame</h5>
@@ -99,6 +105,7 @@ class CreateProject extends Component {
                 />
                 <TodoForm addItem={this.addItem} />
               </div>
+              
             </AccordionItemBody>
 
           </AccordionItem>
@@ -110,7 +117,7 @@ class CreateProject extends Component {
        <AccordionItemBody>
               <div id="main">
                 <TodoList
-                  items={todoItems}
+                  items={[{ index: 3, value: "Measure Charge Distances", done: true }, { index: 3, value: "Check Range on Lascannon", done: true }]}
                   removeItem={this.removeItem}
                   markTodoDone={this.markTodoDone}
                 />
@@ -125,7 +132,7 @@ class CreateProject extends Component {
             <AccordionItemBody>
               <div id="main">
                 <TodoList
-                  items={todoItems}
+                  items={[{ index: 3, value: "Astral Aim", done: true }, { index: 3, value: "Mental Fortitude", done: true }]}
                   removeItem={this.removeItem}
                   markTodoDone={this.markTodoDone}
                 />
@@ -194,6 +201,8 @@ class CreateProject extends Component {
             </AccordionItemBody>
           </AccordionItem>
         </Accordion>
+        <br />
+        <button onClick={this.onClick} type="button" class="btn btn-danger sumbitButton">Send to BattleTimer</button><br /><br /><br />
       </div>
     );
   }
